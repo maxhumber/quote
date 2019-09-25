@@ -1,8 +1,17 @@
-import re
-import requests
-from bs4 import BeautifulSoup
+from quote.newsoup import Soup, get
 
-url = 'https://www.goodreads.com/quotes/search'
+url = 'https://www.goodreads.com/quotes/search?commit=Search&page=2&q=blake+crouch'
+html = get(url)
+
+soup = Soup(html)
+soup.find('div', {'class': 'quoteText'})
+
+
+data = [l.strip() for l in parser.container]
+data = [l for l in data if l != '' and not l.startswith('//<')]
+data = '\n'.join(data).split('“')[1:]
+data
+
 
 def _make_soup(search_term, page=1):
     payload = {'q': search_term, 'commit': 'Search', 'page': page}
