@@ -1,5 +1,4 @@
 import re
-import json
 from gazpacho import get, Soup
 
 URL = 'https://www.goodreads.com/quotes/search'
@@ -42,4 +41,4 @@ def search(query, limit=20):
         quotes.extend(page_quotes)
         page += 1
     quotes = quotes[:limit]
-    return json.dumps(quotes, indent=2)
+    return quotes
