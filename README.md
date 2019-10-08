@@ -35,7 +35,7 @@ print(result)
 #   'quote': "After all, reading is arguably a far more creative and imaginative process than writing; when the reader creates emotion in their head, or the colors of the sky during the setting sun, or the smell of a warm summer's breeze on their face, they should reserve as much praise for themselves as they do for the writer - perhaps more."}]
 ```
 
-quote can also be used a command line tool:
+quote can also be used as a command line tool:
 
 ```
 >>> max@mbp$ quote 'alain de botton'
