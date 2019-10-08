@@ -1,6 +1,11 @@
 import argparse
+import itertools
 import random
-from quote import search
+import threading
+import time
+
+from .core import search
+from .spinner import Spinner
 
 def random_search(query):
     '''Randomly return one quote result'''
@@ -26,8 +31,10 @@ def cli():
     parser = argparse.ArgumentParser()
     parser.add_argument('search', nargs='?')
     args = parser.parse_args()
-    random_quote = random_search(args.search)
-    random_quote = colour(random_quote)
+    spinner = Spinner()
+    spinner.start()
+    random_quote = colour(random_search(args.search))
+    spinner.stop()
     return random_quote
 
 if __name__ == '__main__':
