@@ -18,6 +18,9 @@ setuptools.setup(
         'Programming Language :: Python :: 3',
         'License :: OSI Approved :: MIT License',
     ],
+    keywords=[
+        'quote', 'quotes', 'goodreads', 'wrapper', 'api'
+    ],
     entry_points = {
         'console_scripts': ['quote=quote.cli:cli']
     }

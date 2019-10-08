@@ -14,25 +14,35 @@
 
 quote is a python wrapper for the Goodreads Quote API, powered by [gazpacho](https://github.com/maxhumber/gazpacho).
 
+
+
 #### Usage
 
 quote is simple to use:
 
 ```python
-import json
 from quote import search
 
-query = 'blake crouch'
+query = 'Jasper Fforde'
 result = search(query, limit=2)
-json.loads(result)
+print(result)
 
-# [{'author': 'Blake Crouch',
-#   'book': 'Dark Matter',
-#   'quote': "We're more than the sum total of our choices, that all the paths we might have taken factor somehow into the math of our identity."},
-#  {'author': 'Blake Crouch',
-#   'book': 'Dark Matter',
-#   'quote': 'No one tells you it’s all about to change, to be taken away. There’s no proximity alert, no indication that you’re standing on the precipice. And maybe that’s what makes tragedy so tragic. Not just what happens, but how it happens: a sucker punch that comes at you out of nowhere, when you’re least expecting it. No time to flinch or brace.'}]
+# [{'author': 'Jasper Fforde',
+#   'book': 'Something Rotten',
+#   'quote': 'If the real world were a book, it would never find a publisher. Overlong, detailed to the point of distraction-and ultimately, without a major resolution.'},
+#  {'author': 'Jasper Fforde',
+#   'book': 'The Well of Lost Plots',
+#   'quote': "After all, reading is arguably a far more creative and imaginative process than writing; when the reader creates emotion in their head, or the colors of the sky during the setting sun, or the smell of a warm summer's breeze on their face, they should reserve as much praise for themselves as they do for the writer - perhaps more."}]
+```
 
+quote can also be used a command line tool:
+
+```
+>>> max@mbp$ quote 'alain de botton'
+People only get really interesting when they start to rattle the bars of their cages.
+
+>>> max@mbp$ quote --search='alain de botton'
+Intimacy is the capacity to be rather weird with someone - and finding that that's ok with them.
 ```
 
 
@@ -40,7 +50,7 @@ json.loads(result)
 #### Installation
 
 ```
-pip install quote
+pip install -U quote
 ```
 
 
