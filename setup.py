@@ -22,6 +22,6 @@ setup(
     ],
     keywords=["quote", "quotes", "goodreads", "wrapper", "api"],
     entry_points={"console_scripts": ["quote=quote.cli:cli"]},
-    python_requires=">=3.6",
+    python_requires=">=3.7",
     setup_requires=["setuptools>=38.6.0"],
 )
