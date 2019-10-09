@@ -1,1 +1,1 @@
-from .core import search
+from .quote import quote

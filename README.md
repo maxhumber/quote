@@ -21,10 +21,10 @@ quote is a python wrapper for the Goodreads Quote API, powered by [gazpacho](htt
 quote is simple to use:
 
 ```python
-from quote import search
+from quote import quote
 
-query = 'Jasper Fforde'
-result = search(query, limit=2)
+search = 'Jasper Fforde'
+result = quote(search, limit=2)
 print(result)
 
 # [{'author': 'Jasper Fforde',

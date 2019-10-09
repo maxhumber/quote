@@ -3,8 +3,9 @@ import sys
 from time import sleep
 from threading import Event, Thread
 
+
 class Spinner:
-    phases = cycle(['⣾','⣷', '⣯', '⣟', '⡿', '⢿', '⣻', '⣽'])
+    phases = cycle(["⣾", "⣷", "⣯", "⣟", "⡿", "⢿", "⣻", "⣽"])
 
     def __init__(self):
         self.stop_running = Event()
@@ -22,4 +23,4 @@ class Spinner:
             sys.stdout.write(next(self.phases))
             sys.stdout.flush()
             sleep(0.1)
-            sys.stdout.write('\b')
+            sys.stdout.write("\b")
