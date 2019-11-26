@@ -65,5 +65,6 @@ def quote(search, limit=20):
             break
         quotes.extend(page_quotes)
         page += 1
-    quotes = quotes[:limit]
+    if limit:
+        quotes = quotes[:limit]
     return quotes
