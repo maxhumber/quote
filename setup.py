@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as f:
 
 setup(
     name="quote",
-    version="2.1",
+    version="2.0.1",
     author="Max Humber",
     author_email="max.humber@gmail.com",
     description="quote is a wrapper for the Goodreads Quote API",
@@ -13,7 +13,7 @@ setup(
     long_description_content_type="text/markdown",
     url="https://github.com/maxhumber/quote",
     packages=["quote"],
-    install_requires=["gazpacho"],
+    install_requires=["gazpacho>=0.9.3"],
     classifiers=[
         "Development Status :: 5 - Production/Stable",
         "Natural Language :: English",

@@ -1,7 +1,7 @@
 from itertools import cycle
 import sys
-from time import sleep
 from threading import Event, Thread
+from time import sleep
 
 
 class Spinner:
@@ -12,11 +12,13 @@ class Spinner:
         self.spin_thread = Thread(target=self.init_spin)
 
     def start(self):
+        sys.stdout.write("\033[32m")
         self.spin_thread.start()
 
     def stop(self):
         self.stop_running.set()
         self.spin_thread.join()
+        sys.stdout.write("\033[0m")
 
     def init_spin(self):
         while not self.stop_running.is_set():

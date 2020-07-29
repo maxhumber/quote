@@ -7,6 +7,8 @@ import time
 from .quote import quote
 from .spinner import Spinner
 
+from textwrap import shorten, wrap
+
 
 def random_search(search):
     """Return one random quote result from a search
@@ -17,12 +19,15 @@ def random_search(search):
     """
     results = quote(search)
     random_quote = random.choice(results)["quote"]
-    return random_quote
+    wrapped_quote = "\n".join(
+        wrap(shorten(random_quote, 280 - 4, placeholder="..."), 70)
+    )
+    return wrapped_quote
 
 
 def colour(string):
-    """Paint it red!"""
-    string = f"\033[31m{string}\033[0m"
+    """Paint it green!"""
+    string = f"\033[32m{string}\033[0m"
     return string
 
 
@@ -32,10 +37,10 @@ def cli():
     Examples:
 
     ```
-    >>> max@mbp$ quote 'alain de botton'
+    >>> max@mbp % quote 'alain de botton'
     People only get really interesting when they start to rattle the bars of their cages.
 
-    >>> max@mbp$ quote shakespeare
+    >>> max@mbp % quote shakespeare
     Though she be but little, she is fierce!
     ```
     """

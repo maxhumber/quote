@@ -12,13 +12,13 @@
 
 #### About
 
-quote is a python wrapper for the Goodreads Quote API, powered by [gazpacho](https://github.com/maxhumber/gazpacho).
+`quote` is a python wrapper for the Goodreads Quote API, powered by [gazpacho](https://github.com/maxhumber/gazpacho).
 
 
 
-#### Usage
+#### Quickstart
 
-quote is simple to use:
+`quote` is simple to use:
 
 ```python
 from quote import quote
@@ -35,19 +35,19 @@ print(result)
 #   'quote': "After all, reading is arguably a far more creative and imaginative process than writing; when the reader creates emotion in their head, or the colors of the sky during the setting sun, or the smell of a warm summer's breeze on their face, they should reserve as much praise for themselves as they do for the writer - perhaps more."}]
 ```
 
-quote can also be used as a command line tool:
+`quote` can also be used as a command line tool:
 
-```
->>> max@mbp$ quote 'alain de botton'
+```sh
+>>> max@mbp % quote 'alain de botton'
 People only get really interesting when they start to rattle the bars of their cages.
 
->>> max@mbp$ quote --search='alain de botton'
+>>> max@mbp % quote --search='alain de botton'
 Intimacy is the capacity to be rather weird with someone - and finding that that's ok with them.
 ```
 
 
 
-#### Installation
+#### Install
 
 ```
 pip install -U quote

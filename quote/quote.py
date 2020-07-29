@@ -17,18 +17,15 @@ def _parse_quote(quote_text):
     except AttributeError:
         book = None
     author = quote_text.find("span", {"class": "authorOrTitle"}).text.replace(",", "")
-    quote = re.search("(?<=“)(.*?)(?=”)", quote_text.text).group(0)
+    quote = re.search("(?<=“)(.*?)(?=”)", quote_text.remove_tags()).group(0)
     return {"author": author, "book": book, "quote": quote}
 
 
 def _get_page_quotes(soup):
     quotes = []
     for quote_text in soup.find("div", {"class": "quoteText"}):
-        try:
-            quote = _parse_quote(quote_text)
-            quotes.append(quote)
-        except:
-            pass
+        quote = _parse_quote(quote_text)
+        quotes.append(quote)
     return quotes
 
 
@@ -60,8 +57,9 @@ def quote(search, limit=20):
         if len(quotes) > limit:
             break
         soup = _make_soup(search, page=page)
-        page_quotes = _get_page_quotes(soup)
-        if not page_quotes:
+        try:
+            page_quotes = _get_page_quotes(soup)
+        except TypeError:
             break
         quotes.extend(page_quotes)
         page += 1
