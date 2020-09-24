@@ -17,7 +17,7 @@ def _parse_quote(quote_text):
     except AttributeError:
         book = None
     author = quote_text.find("span", {"class": "authorOrTitle"}).text.replace(",", "")
-    quote = re.search("(?<=“)(.*?)(?=”)", quote_text.remove_tags()).group(0)
+    quote = re.search("(?<=“)(.*?)(?=”)", quote_text.strip()).group(0)
     return {"author": author, "book": book, "quote": quote}
 
 

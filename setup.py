@@ -1,19 +1,19 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 
 with open("README.md", "r", encoding="utf-8") as f:
     long_description = f.read()
 
 setup(
     name="quote",
-    version="2.0.1",
+    version="2.0.2",
     author="Max Humber",
     author_email="max.humber@gmail.com",
     description="quote is a wrapper for the Goodreads Quote API",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/maxhumber/quote",
-    packages=["quote"],
-    install_requires=["gazpacho>=0.9.3"],
+    packages=find_packages(),
+    install_requires=["gazpacho>=1.0"],
     classifiers=[
         "Development Status :: 5 - Production/Stable",
         "Natural Language :: English",

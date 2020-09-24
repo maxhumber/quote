@@ -2,11 +2,12 @@
   <img src="https://raw.githubusercontent.com/maxhumber/quote/master/quote.png" height="300px" alt="quote">
 </h3>
 <p align="center">
-  <a href="https://opensource.org/licenses/MIT"><img alt="MIT" src="https://img.shields.io/github/license/maxhumber/quote.svg"></a>
+  <a href="https://github.com/maxhumber/gazpacho"><img alt="gazpacho" src="https://img.shields.io/badge/scraper-gazpacho-C6422C"></a>
   <a href="https://travis-ci.org/maxhumber/quote"><img alt="Travis" src="https://img.shields.io/travis/maxhumber/quote.svg"></a>
   <a href="https://pypi.python.org/pypi/quote"><img alt="PyPI" src="https://img.shields.io/pypi/v/quote.svg"></a>
-  <a href="https://pypi.python.org/pypi/quote"><img alt="Downloads" src="https://img.shields.io/pypi/dm/quote.svg"></a>
+  <a href="https://pepy.tech/project/quote"><img alt="Downloads" src="https://pepy.tech/badge/quote"></a>
 </p>
+
 
 
 
