@@ -2,20 +2,20 @@ import argparse
 import itertools
 import random
 import threading
+from textwrap import shorten, wrap
 import time
 
 from .quote import quote
 from .spinner import Spinner
 
-from textwrap import shorten, wrap
 
-
-def random_search(search):
-    """Return one random quote result from a search
+def random_search(search: str) -> str:
+    """\
+    Return one random quote result from a search
 
     Params:
 
-    - search (str): Search term
+    - search: term
     """
     results = quote(search)
     random_quote = random.choice(results)["quote"]
@@ -25,14 +25,17 @@ def random_search(search):
     return wrapped_quote
 
 
-def colour(string):
-    """Paint it green!"""
+def colour(string: str) -> str:
+    """\
+    Paint it green!
+    """
     string = f"\033[32m{string}\033[0m"
     return string
 
 
-def cli():
-    """Retrieve a random quote from Goodreads
+def cli() -> str:
+    """\
+    Retrieve a random quote from Goodreads
 
     Examples:
 

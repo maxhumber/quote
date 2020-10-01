@@ -1,5 +1,7 @@
 # custom
 sandbox.py
+*.sqlite3
+out
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

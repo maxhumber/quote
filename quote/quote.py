@@ -1,41 +1,47 @@
 import re
-from gazpacho import get, Soup
+from typing import Dict, List
+
+from gazpacho import Soup
+
 
 URL = "https://www.goodreads.com/quotes/search"
 
 
-def _make_soup(query, page=1):
+def _make_soup(query: str, page: int = 1) -> Soup:
     params = {"q": query, "commit": "Search", "page": page}
-    html = get(URL, params)
-    soup = Soup(html)
+    soup = Soup.get(URL, params)
     return soup
 
 
-def _parse_quote(quote_text):
-    try:
-        book = quote_text.find("a", {"class": "authorOrTitle"}).text
-    except AttributeError:
-        book = None
-    author = quote_text.find("span", {"class": "authorOrTitle"}).text.replace(",", "")
-    quote = re.search("(?<=“)(.*?)(?=”)", quote_text.strip()).group(0)
-    return {"author": author, "book": book, "quote": quote}
+def _parse_quote(quote_text: Soup) -> Dict[str, str]:
+    b = quote_text.find("a", {"class": "authorOrTitle"}, mode="first")
+    a = quote_text.find("span", {"class": "authorOrTitle"}, mode="first")
+    q = re.search("(?<=“)(.*?)(?=”)", quote_text.strip())
+    return {
+        "author": "" if not isinstance(a, Soup) else a.text.replace(",", ""),
+        "book": "" if not isinstance(b, Soup) else b.text,
+        "quote": "" if not q else q.group(0),
+    }
 
 
-def _get_page_quotes(soup):
+def _get_page_quotes(soup: Soup) -> List[Dict[str, str]]:
     quotes = []
-    for quote_text in soup.find("div", {"class": "quoteText"}):
+    quote_texts = soup.find("div", {"class": "quoteText"}, mode="all")
+    assert isinstance(quote_texts, list)
+    for quote_text in quote_texts:
         quote = _parse_quote(quote_text)
         quotes.append(quote)
     return quotes
 
 
-def quote(search, limit=20):
-    """Retrieve quotes from Goodreads based on a search term
+def quote(search: str, limit: int = 20) -> List[Dict[str, str]]:
+    """\
+    Retrieve quotes from Goodreads
 
     Params:
 
-    - search (str): Author or book to search for
-    - limit (int, default=20): Number of quotes to return
+    - search: Author and/or book
+    - limit: Number of quotes to return
 
     Example:
 
@@ -52,7 +58,7 @@ def quote(search, limit=20):
     ```
     """
     page = 1
-    quotes = []
+    quotes: List[Dict[str, str]] = []
     while True:
         if len(quotes) > limit:
             break
