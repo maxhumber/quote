@@ -2,14 +2,15 @@ import argparse
 import itertools
 import random
 import threading
-from textwrap import shorten, wrap
 import time
+from textwrap import shorten, wrap
+from typing import Optional
 
 from .quote import quote
 from .spinner import Spinner
 
 
-def random_search(search: str) -> str:
+def random_search(search: str) -> Optional[str]:
     """\
     Return one random quote result from a search
 
@@ -18,6 +19,8 @@ def random_search(search: str) -> str:
     - search: term
     """
     results = quote(search)
+    if not results:
+        return ""
     random_quote = random.choice(results)["quote"]
     wrapped_quote = "\n".join(
         wrap(shorten(random_quote, 280 - 4, placeholder="..."), 70)
@@ -52,9 +55,11 @@ def cli() -> str:
     args = parser.parse_args()
     spinner = Spinner()
     spinner.start()
-    random_quote = colour(random_search(args.search))
+    random_quote = random_search(args.search)
     spinner.stop()
-    return random_quote
+    if not random_quote:
+        return ""
+    return colour(random_quote)
 
 
 if __name__ == "__main__":

@@ -1,11 +1,11 @@
-from setuptools import setup, find_packages
+from setuptools import find_packages, setup  # type: ignore
 
 with open("README.md", "r", encoding="utf-8") as f:
     long_description = f.read()
 
 setup(
     name="quote",
-    version="2.0.3",
+    version="2.0.4",
     author="Max Humber",
     author_email="max.humber@gmail.com",
     description="A wrapper for the Goodreads Quote API",

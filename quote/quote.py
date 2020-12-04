@@ -1,8 +1,7 @@
 import re
-from typing import Dict, List
+from typing import Dict, List, Optional
 
 from gazpacho import Soup
-
 
 URL = "https://www.goodreads.com/quotes/search"
 
@@ -34,7 +33,7 @@ def _get_page_quotes(soup: Soup) -> List[Dict[str, str]]:
     return quotes
 
 
-def quote(search: str, limit: int = 20) -> List[Dict[str, str]]:
+def quote(search: str, limit: int = 20) -> Optional[List[Dict[str, str]]]:
     """\
     Retrieve quotes from Goodreads
 
@@ -59,16 +58,13 @@ def quote(search: str, limit: int = 20) -> List[Dict[str, str]]:
     """
     page = 1
     quotes: List[Dict[str, str]] = []
-    while True:
-        if len(quotes) > limit:
-            break
+    while len(quotes) < limit:
         soup = _make_soup(search, page=page)
-        try:
-            page_quotes = _get_page_quotes(soup)
-        except TypeError:
-            break
+        page_quotes = _get_page_quotes(soup)
+        if not page_quotes:
+            return None
         quotes.extend(page_quotes)
+        if not soup.find("div", {"style": "float: right"}).text: # type: ignore
+            break
         page += 1
-    if limit:
-        quotes = quotes[:limit]
-    return quotes
+    return quotes[:limit]

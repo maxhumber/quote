@@ -1,5 +1,5 @@
-from itertools import cycle
 import sys
+from itertools import cycle
 from threading import Event, Thread
 from time import sleep
 from typing import Any
