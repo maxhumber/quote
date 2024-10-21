@@ -13,17 +13,17 @@ class Spinner:
         self.spin_thread: Any = Thread(target=self.init_spin)
 
     def start(self) -> None:
-        sys.stdout.write("\033[32m")
+        sys.stderr.write("\033[32m")
         self.spin_thread.start()
 
     def stop(self) -> None:
         self.stop_running.set()
         self.spin_thread.join()
-        sys.stdout.write("\033[0m")
+        sys.stderr.write("\033[0m")
 
     def init_spin(self) -> None:
         while not self.stop_running.is_set():
-            sys.stdout.write(next(self.phases))
-            sys.stdout.flush()
+            sys.stderr.write(next(self.phases))
+            sys.stderr.flush()
             sleep(0.1)
-            sys.stdout.write("\b")
+            sys.stderr.write("\b")

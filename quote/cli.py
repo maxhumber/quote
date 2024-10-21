@@ -1,6 +1,8 @@
 import argparse
 import itertools
+import logging
 import random
+import sys
 import threading
 import time
 from textwrap import shorten, wrap
@@ -58,8 +60,11 @@ def cli() -> str:
     random_quote = random_search(args.search)
     spinner.stop()
     if not random_quote:
-        return ""
-    return colour(random_quote)
+        logging.error(f"No results found for search: {args.search}")
+        sys.exit(1)
+    else:
+        print(random_quote)
+        sys.exit(0)
 
 
 if __name__ == "__main__":
