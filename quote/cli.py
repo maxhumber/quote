@@ -24,9 +24,7 @@ def random_search(search: str) -> Optional[str]:
     if not results:
         return ""
     random_quote = random.choice(results)["quote"]
-    wrapped_quote = "\n".join(
-        wrap(shorten(random_quote, 280 - 4, placeholder="..."), 70)
-    )
+    wrapped_quote = shorten(random_quote, 280 - 4, placeholder="...")
     return wrapped_quote
 
 
@@ -63,7 +61,7 @@ def cli() -> str:
         logging.error(f"No results found for search: {args.search}")
         sys.exit(1)
     else:
-        print(random_quote)
+        print(colour(random_quote))
         sys.exit(0)
 
 
