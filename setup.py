@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as f:
 
 setup(
     name="quote",
-    version="2.0.4",
+    version="3.0",
     author="Max Humber",
     author_email="max.humber@gmail.com",
     description="A wrapper for the Goodreads Quote API",
